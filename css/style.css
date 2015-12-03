@@ -1,0 +1,70 @@
+body {
+  background-color: #F8F8F8;
+}
+
+.top-spacing {
+  height: 100px;
+}
+
+input {
+  border-radius: 3px;
+  border: 2px solid gray;
+  padding: 10px;
+  font-size: 18px;
+}
+
+.invoice-container {
+  border: 3px solid black;
+  border-radius: 10px;
+  background-color: #303030;
+  padding: 30px 30px;
+}
+
+#item-header, .line-item-number {
+  color: white;
+}
+
+.line-item-number {
+  font-size: 24px;
+  padding: 6px;
+}
+
+.add-line-item-button, .remove-line-item-button {
+  font-weight: bold;
+  background-color: white;
+  border: 2px solid #696969;
+  text-align: center;
+  display: inline;
+}
+
+.remove-line-item-button {
+  border-radius: 5px;
+  padding: 2px 7px;
+  margin: 8px 10px 8px 20px;
+  color: red;
+  float: right;
+}
+
+.remove-line-item-button:hover {
+  cursor: pointer;
+  background-color: #D3D3D3;
+}
+
+.add-line-item-button {
+  border-radius: 7px;
+  padding: 0px 50px 3px 50px;
+  margin-left: -13px;
+  font-size: 24px;
+  color: black;
+  float: left;
+}
+
+.add-line-item-button:hover {
+  cursor: pointer;
+  background-color: #D3D3D3;
+}
+
+.save-button, .total {
+  display: inline;
+  float: right;
+}

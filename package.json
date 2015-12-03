@@ -1,0 +1,28 @@
+{
+  "name": "invoice-creator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "watchify -v -d -t [ reactify --es6 ] main.js -o compiled.js",
+    "build-development": "NODE_ENV=development browserify -t [ reactify --es6 ] main.js | uglifyjs > compiled.js",
+    "build-production": "NODE_ENV=production browserify -t [ reactify --es6 ] main.js | uglifyjs > compiled.js"
+  },
+  "author": "sebastian-jay",
+  "license": "MIT",
+  "dependencies": {
+    "events": "^1.1.0",
+    "flux": "^2.1.0",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3",
+    "react-addons-linked-state-mixin": "^0.14.3"
+  },
+  "devDependencies": {
+    "browserify": "^9.0.8",
+    "reactify": "^1.1.0",
+    "uglify-js": "^2.4.20",
+    "watchify": "^3.1.2"
+  }
+}
