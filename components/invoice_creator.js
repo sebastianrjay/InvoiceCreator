@@ -33,12 +33,6 @@ var InvoiceCreator = React.createClass({
   },
 
   render: function() {
-    var saveButton = <button className="save-button btn btn-lg btn-default">Save Invoice</button>;
-    if(LineItemStore.isInvoiceReadyForSave()) {
-      saveButton = <button className="save-button btn btn-lg btn-primary"
-        onClick={ this.saveFormData }>Save Invoice</button>
-    }
-
     return (
       <div className="col-lg-9">
         <h1 id="invoice-header">New Invoice</h1>
@@ -64,9 +58,10 @@ var InvoiceCreator = React.createClass({
             <p className="add-line-item-button" onClick={ this.addLineItem }>+</p>
             <br /><br /><br />
             <input type="text" valueLink={ this.linkState('total') }
-              className="total" placeholder="Grand Total" />
+              className="total" placeholder="Grand Total ($)" />
             <br /><br /><br />
-            { saveButton }
+            <button className="save-button btn btn-lg btn-primary"
+              onClick={ this.saveFormData }>Save Invoice</button>
             <br /><br /><br />
           </div>
         </div>

@@ -3,7 +3,7 @@ var AppDispatcher = require('../dispatcher/app_dispatcher.js');
 var EventEmitter = require('events').EventEmitter;
 
 var _lineItems = [<LineItem key="1" index={ "1" } />], _totals = {},
-    _idx = 1, CHANGE_EVENT = "change", _serverData = {}, _startedItems = 0;
+    _idx = 1, CHANGE_EVENT = "change", _serverData = {};
 
 var _addLineItem = function() {
   _idx++;
@@ -29,12 +29,6 @@ window.LineItemStore = $.extend({}, EventEmitter.prototype, {
     this.removeListener(CHANGE_EVENT, callback);
   },
 
-  isInvoiceReadyForSave: function() {
-    var itemsCompleted = Object.keys(LineItemStore.serverData()).length;
-    var itemsStarted = Object.keys(_startedItems).length
-    return itemsCompleted > 0 && itemsCompleted === itemsStarted;
-  },
-
   isLineItemAddable: function() {
     var itemsCompleted = Object.keys(LineItemStore.serverData()).length;
     return itemsCompleted > 0 && itemsCompleted === _lineItems.length;
@@ -47,13 +41,6 @@ window.LineItemStore = $.extend({}, EventEmitter.prototype, {
     }).length === 0;
   },
 
-  isLineItemStarted(item) {
-    var formData = item[Object.keys(item)[0]];
-    return Object.keys(formData).filter(function(key) {
-      return !!formData[key] === false;
-    }).length > 0;
-  },
-
   lineItems: function() {
     return _lineItems.slice();
   },
@@ -63,14 +50,11 @@ window.LineItemStore = $.extend({}, EventEmitter.prototype, {
   },
 
   setServerData: function(lineItem) {
-    // _serverData contains only completed items, ready to be saved via AJAX
+    // _serverData only contains completed items, ready to be saved via AJAX
     if(this.isLineItemCompleted(lineItem)) {
       for(var key in lineItem) _serverData[key] = lineItem[key];
-    } else if(this.isLineItemStarted(lineItem)){
-      for(var key in lineItem) _startedItems[key] = lineItem[key];
     } else {
       for(var key in lineItem) { if(_serverData[key]) delete _serverData[key]; }
-      for(var key in lineItem) { if(_startedItems[key]) delete _startedItems[key]; }
     }
   },
 
